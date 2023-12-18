@@ -1,5 +1,5 @@
 # Project Name
-> This is a challenge project related to automating a test using Serenity DDB.
+> This is a challenge project related to API testing.
 
 ## Table of Contents
 * [General Info](#general-information)
