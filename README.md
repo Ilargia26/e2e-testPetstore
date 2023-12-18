@@ -8,7 +8,6 @@
 * [Features](#features)
 * [Setup](#setup)
 * [GitHub repository](#GitHub-repository)
-* [Conclusions](#Conclusions)
 * [Contact](#Contact)
 
 ## General Information
