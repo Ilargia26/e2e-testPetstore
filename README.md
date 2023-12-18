@@ -51,7 +51,6 @@ Importing a project into Postman is a straightforward process. Follow these step
    - Setup the variables 
    
    ```
-      javascript I'm A tab
    base_url = https://petstore.swagger.io/v2
    username = string
    ```
@@ -61,9 +60,6 @@ Importing a project into Postman is a straightforward process. Follow these step
 
 ## GitHub repository
 - https://github.com/Ilargia26/e2e-testPetstore.git
-
-## Conclusions
-- 
 
 ## Contact
 Created by Mariela Monge - feel free to contact me!
