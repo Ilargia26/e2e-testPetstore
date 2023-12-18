@@ -50,9 +50,12 @@ Importing a project into Postman is a straightforward process. Follow these step
    - Configurate the environment like QA
    - Setup the variables 
    
-   ```javascript I'm A tab
-base_url = https://petstore.swagger.io/v2
-username = string ```
+   ```
+      javascript I'm A tab
+   base_url = https://petstore.swagger.io/v2
+   username = string
+   ```
+
    - Run the test.
    
 
