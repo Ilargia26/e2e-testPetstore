@@ -1,0 +1,306 @@
+{
+	"info": {
+		"_postman_id": "39152e9c-efe1-43dd-8560-315693a986a8",
+		"name": "PetStore API",
+		"description": "E2E Testing for pet store API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8787981",
+		"_collection_link": "https://speeding-equinox-919746.postman.co/workspace/petstore-api~63f5d1ae-1e4d-4d0e-9a0e-fa7fcda7045e/collection/8787981-39152e9c-efe1-43dd-8560-315693a986a8?action=share&source=collection_link&creator=8787981"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful USER create\", function () {",
+							"    pm.expect(pm.response.code).to.be.eq(200);",
+							"});",
+							"",
+							"pm.test(\"Successful USER create body response\", function () {",
+							"    const json = pm.response.json();",
+							"",
+							"    pm.expect(json.code).to.be.eq(200);",
+							"    pm.expect(json.type).to.be.eq(\"unknown\");",
+							"    pm.expect(json.message).to.be.eq(`${pm.environment.get(\"id\")}`);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"id\", new Date().getTime());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": {{id}},\n  \"username\": \"{{username}}{{id}}\",\n  \"firstName\": \"Max\",\n  \"lastName\": \"Powers\",\n  \"email\": \"max@test.com\",\n  \"password\": \"pass21212\",\n  \"phone\": \"098623523\",\n  \"userStatus\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/user",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"user"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Get USER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful USER retrieve\", function () {",
+							"    pm.expect(pm.response.code).to.be.eq(200);",
+							"});",
+							"",
+							"pm.test(\"Successful USER retrieve body response\", function () {",
+							"    const json = pm.response.json();",
+							"    ",
+							"    pm.expect(json.id).to.be.eq(pm.environment.get(\"id\"));",
+							"    pm.expect(json.username).to.be.eq(`${pm.environment.get(\"username\")}${pm.environment.get(\"id\")}`);",
+							"    pm.expect(json.email).to.be.eq(\"max@test.com\");",
+							"    pm.expect(json.firstName).to.be.eq(\"Max\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/user/{{username}}{{id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"user",
+						"{{username}}{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful USER update\", function () {",
+							"    pm.expect(pm.response.code).to.be.eq(200);",
+							"});",
+							"",
+							"pm.test(\"Successful USER update body response\", function () {",
+							"    const json = pm.response.json();",
+							"",
+							"    pm.expect(json.code).to.be.eq(200);",
+							"    pm.expect(json.type).to.be.eq(\"unknown\");",
+							"    pm.expect(json.message).to.be.eq(`${pm.environment.get(\"id\")}`);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": {{id}},\n  \"username\": \"{{username}}{{id}}\",\n  \"firstName\": \"Marlon\",\n  \"lastName\": \"Powers\",\n  \"email\": \"marlon@test.com\",\n  \"password\": \"pass21212\",\n  \"phone\": \"098623523\",\n  \"userStatus\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/user/{{username}}{{id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"user",
+						"{{username}}{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get USER After Update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful USER retrieve\", function () {",
+							"    pm.expect(pm.response.code).to.be.eq(200);",
+							"});",
+							"",
+							"pm.test(\"Successful USER retrieve body response\", function () {",
+							"    const json = pm.response.json();",
+							"    ",
+							"    pm.expect(json.id).to.be.eq(pm.environment.get(\"id\"));",
+							"    pm.expect(json.username).to.be.eq(`${pm.environment.get(\"username\")}${pm.environment.get(\"id\")}`);",
+							"    pm.expect(json.email).to.be.eq(\"marlon@test.com\");",
+							"    pm.expect(json.firstName).to.be.eq(\"Marlon\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/user/{{username}}{{id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"user",
+						"{{username}}{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful USER delete\", function () {",
+							"    pm.expect(pm.response.code).to.be.eq(200);",
+							"});",
+							"",
+							"pm.test(\"Successful USER delete body response\", function () {",
+							"    const json = pm.response.json();",
+							"",
+							"    pm.expect(json.code).to.be.eq(200);",
+							"    pm.expect(json.type).to.be.eq(\"unknown\");",
+							"    pm.expect(json.message).to.be.eq(`${pm.environment.get(\"username\")}${pm.environment.get(\"id\")}`);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/user/{{username}}{{id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"user",
+						"{{username}}{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get USER After Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful USER retrieve\", function () {",
+							"    pm.expect(pm.response.code).to.be.eq(404);",
+							"});",
+							"",
+							"pm.test(\"Successful USER retrieve body response\", function () {",
+							"    const json = pm.response.json();",
+							"    ",
+							"    pm.expect(json.code).to.be.eq(1);",
+							"    pm.expect(json.message).to.be.eq(\"User not found\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/user/{{username}}{{id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"user",
+						"{{username}}{{id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": ""
+		}
+	]
+}
